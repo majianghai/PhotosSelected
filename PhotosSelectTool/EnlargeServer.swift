@@ -9,10 +9,11 @@
 import UIKit
 
 class EnlargeServer: UIView {
-
+    
     var imageViewArray : [UIImageView]?
     var enlargeGestureArray : [UITapGestureRecognizer]?
     var addGestureArray : [UITapGestureRecognizer]?
+    
     
     var scrollView : UIScrollView?
     var toolBar : UIView?
@@ -24,6 +25,7 @@ class EnlargeServer: UIView {
         self.imageViewArray = imageViewArray
         
         let screenSize = UIScreen.main.bounds.size
+        
         
         
         scrollView = UIScrollView(frame: CGRect(x: screenSize.width * 0.5, y: screenSize.height * 0.5, width: 0, height: 0))
@@ -49,9 +51,9 @@ class EnlargeServer: UIView {
         scrollView?.contentSize = CGSize(width: CGFloat(count) * screenSize.width, height: 0)
         
         weak var weakSelf = self
-        UIView.animate(withDuration: 0.5, animations: { 
+        UIView.animate(withDuration: 0.5, animations: {
             weakSelf!.scrollView!.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height);
-        }) 
+        })
         
         
         toolBar = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 64))
@@ -75,7 +77,7 @@ class EnlargeServer: UIView {
         toolBar?.addSubview(deleteBtn!)
         
     }
- 
+    
     
     /// 点击了取消按钮
     func cancleBtnEvent() {
@@ -87,11 +89,11 @@ class EnlargeServer: UIView {
             
             weakSelf!.scrollView!.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height);
             
-            }, completion: { (finished) in
+        }, completion: { (finished) in
             
             weakSelf!.removeFromSuperview()
-
-        }) 
+            
+        })
         
     }
     
@@ -115,7 +117,7 @@ class EnlargeServer: UIView {
             index = index + 1
         }
         scrollView?.contentSize = CGSize(width: CGFloat((scrollView?.subviews.count)!) * screenSize.width, height: 0)
-
+        
         
         // 给所有的imageView清空图片
         for imageView in imageViewArray! {
@@ -152,7 +154,7 @@ class EnlargeServer: UIView {
     func setupGesture() {
         
         weak var weakSelf = self
-
+        
         /// 设置手势
         for imageView in weakSelf!.imageViewArray! {
             
